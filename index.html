@@ -40,6 +40,9 @@
           <label for="trailer">Url Trailer:</label>
           <input type="text" name="trailer" id="trailer" placeholder="Ej. https://...">
         </div>
+        <div class="messages" id="messages">
+
+        </div>
         <div class="buttons">
           <button id="save" class="btn btn__primary">Guardar</button>
         </div>
@@ -128,13 +131,32 @@
             alert("Formato de imagen no valido, para: " + name + " " + url);
           }
         } else {
-          alert("Complete todos los campos");
+          // alert("Complete todos los campos");
+          createAlert("Complete todos los campos", "alert__danger", document.getElementById("messages"));
         }
         document.getElementById("trailer").value = "";
         document.getElementById("name").value = "";
         document.getElementById("url_image").value = "";
       })
     })
+
+    function createAlert(message, clases, conteiner) {
+      /**
+       * @param {string} message
+       * @param {string} clases
+       * @param {HTMLElement} conteiner
+       * @returns {HTMLDivElement}
+       **/
+      conteiner.innerHTML = "";
+      const div = document.createElement("div");
+      const p = document.createElement("p");
+      
+      div.setAttribute("class", "alert " + clases);
+      p.innerHTML = message;
+      div.appendChild(p);
+      conteiner.appendChild(div);
+      return div;
+    }
   </script>
 </body>
 
